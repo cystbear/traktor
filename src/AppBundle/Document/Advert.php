@@ -2,6 +2,7 @@
 
 namespace AppBundle\Document;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
@@ -18,16 +19,20 @@ class Advert
      */
     protected $id;
 
-
     /**
      * @var float
+     *
+     * @Assert\NotBlank
      * @MongoDB\String
      */
     protected $description;
 
     /**
-     * @var float
-     * @MongoDB\Float
+     * @var int
+     *
+     * @Assert\Range(min="10")
+     * @Assert\NotNull
+     * @MongoDB\Int
      */
     protected $price;
 
