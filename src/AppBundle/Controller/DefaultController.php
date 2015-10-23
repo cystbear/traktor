@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Controller\BaseController;
@@ -10,9 +9,6 @@ use AppBundle\Document\Advert;
 
 class DefaultController extends BaseController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
     public function indexAction(Request $request)
     {
         $advert = new Advert();
