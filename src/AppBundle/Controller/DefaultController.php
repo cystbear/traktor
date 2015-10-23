@@ -3,19 +3,42 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+use AppBundle\Controller\BaseController;
+use AppBundle\Document\Advert;
+
+class DefaultController extends BaseController
 {
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        $advert = new Advert();
+        $advert
+            ->setPrice(100500)
+            ->setDescription('New Trakrot')
+        ;
+        $this->getDm()->persist($advert);
+        $this->getDm()->flush();
+
+        $repo = $this->getDm()->getRepository('AppBundle\Document\Advert');
+        $newAdv = $repo->findOneByPrice(100500);
+        $aId = $newAdv->getId();
+
+        $newAdv = $repo->find($aId);
+
+        $newAdv->setPrice(777);
+        $this->getDm()->flush();
+
+        return
+            $this->render('AppBundle::default/index.html.twig',
+            array(
+                'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+                'adv' => $newAdv
+            )
+        )
+        ;
     }
 }
