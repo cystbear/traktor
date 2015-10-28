@@ -1,3 +1,7 @@
 _homepage:
     pattern: /
     defaults: { _controller: AppBundle:Default:index }
+
+_jd2:
+    pattern: /jd2
+    defaults: { _controller: AppBundle:Default:jd2 }

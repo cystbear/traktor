@@ -13,16 +13,22 @@ class DefaultController extends BaseController
 {
     public function indexAction(Request $request)
     {
-        $repo = $this->getDm()->getRepository('AppBundle\Document\Advert');
-        $adv = $repo->findOneBy([]);
+//        $repo = $this->getDm()->getRepository('AppBundle\Document\Advert');
+//        $adv = $repo->findOneBy([]);
+//        or
+        $adv = null;
 
-        $form = $this->get('form.factory')->create(new AdvertType(), $adv ?: new Advert());
+        $flag = 1;
+
+        $form = $this->get('form.factory')->create(new AdvertType($flag), $adv ?: new Advert());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $advert = $form->getData();
             $this->getDm()->persist($advert);
             $this->getDm()->flush();
+
+            return $this->redirect($this->generateUrl('_homepage'));
         }
 
         return
@@ -31,7 +37,17 @@ class DefaultController extends BaseController
                 'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
                 'form' => $form->createView(),
             )
-        )
-        ;
+        );
+    }
+
+    public function jd2Action(Request $request)
+    {
+        $makeRepo = $this->getDm()->getRepository('AppBundle\Document\Make');
+        $jd2 = $makeRepo->findJd2();
+
+        $advRepo = $this->getDm()->getRepository('AppBundle\Document\Advert');
+        $Jd2Advs = $advRepo->findByMake($jd2);
+
+        var_dump($Jd2Advs->toArray());
     }
 }

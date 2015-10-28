@@ -5,6 +5,8 @@ namespace AppBundle\Document;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
+use AppBundle\Document\Make;
+
 /**
  * @MongoDB\Document(
  *     collection="advert",
@@ -35,6 +37,11 @@ class Advert
      * @MongoDB\Int
      */
     protected $price;
+
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="AppBundle\Document\Make")
+     */
+    protected $make;
 
     /**
      * Get id.
@@ -81,4 +88,24 @@ class Advert
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMake()
+    {
+        return $this->make;
+    }
+
+    /**
+     * @param mixed $make
+     */
+    public function setMake(Make $make)
+    {
+        $this->make = $make;
+
+        return $this;
+    }
+
+
 }
