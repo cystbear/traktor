@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="app.form.type.address" class="AppBundle\Form\AddressType">
+            <tag name="form.type" alias="address" />
+        </service>
+
+        <service id="app.form.type.advert" class="AppBundle\Form\AdvertType">
+            <tag name="form.type" alias="advert" />
+        </service>
+
+        <service id="app.form.type.user" class="AppBundle\Form\UserType">
+            <argument type="service" id="app.form.type.user_transformer" />
+            <tag name="form.type" alias="app_user_type" />
+        </service>
+
+        <service id="app.form.type.user_transformer" class="AppBundle\Form\UserTransformer">
+            <argument type="service" id="app.user.repository" />
+        </service>
+    </services>
+
+</container>

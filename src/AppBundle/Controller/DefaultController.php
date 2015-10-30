@@ -13,18 +13,23 @@ class DefaultController extends BaseController
 {
     public function indexAction(Request $request)
     {
-//        $repo = $this->getDm()->getRepository('AppBundle\Document\Advert');
-//        $adv = $repo->findOneBy([]);
-//        or
-        $adv = null;
+        $repo = $this->getDm()->getRepository('AppBundle\Document\Advert');
+        $adv = $repo->findOneBy([]);
 
-        $flag = 1;
+        if ($adv) {
+            $form = $this->get('form.factory')->create($this->get('app.form.type.advert'), $adv);
+        } else {
+            $form = $this->get('form.factory')->create($this->get('app.form.type.advert'));
+        }
 
-        $form = $this->get('form.factory')->create(new AdvertType($flag), $adv ?: new Advert());
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $advert = $form->getData();
+
+            $user = $advert->getUser();
+            $this->getDm()->persist($user);
+
             $this->getDm()->persist($advert);
             $this->getDm()->flush();
 

@@ -6,6 +6,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 use AppBundle\Document\Make;
+use AppBundle\Document\Address;
+use AppBundle\Document\User;
 
 /**
  * @MongoDB\Document(
@@ -42,6 +44,22 @@ class Advert
      * @MongoDB\ReferenceOne(targetDocument="AppBundle\Document\Make")
      */
     protected $make;
+
+    /**
+     * @MongoDB\ReferenceOne(targetDocument="AppBundle\Document\User")
+     */
+    protected $user;
+
+    /**
+     * @MongoDB\EmbedOne(targetDocument="AppBundle\Document\Address")
+     */
+    protected $address;
+
+
+//    public function __construct()
+//    {
+//        $this->user = new User();
+//    }
 
     /**
      * Get id.
@@ -107,5 +125,39 @@ class Advert
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
 
+    /**
+     * @param mixed $address
+     */
+    public function setAddress(Address $address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }
