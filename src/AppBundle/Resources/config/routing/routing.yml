@@ -5,3 +5,7 @@ _homepage:
 _jd2:
     pattern: /jd2
     defaults: { _controller: AppBundle:Default:jd2 }
+
+_e1:
+    pattern: /e1
+    defaults: { _controller: AppBundle:Event:e }
