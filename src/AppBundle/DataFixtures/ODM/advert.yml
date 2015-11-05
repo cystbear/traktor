@@ -1,0 +1,25 @@
+AppBundle\Document\Advert:
+  advert0:
+    make: @make0
+    price: 15000
+    description: Barely used.
+
+  advert1:
+    make: @make1
+    price: 11000
+    description: New beautiful car.
+
+  advert2:
+    make: @make2
+    price: 13000
+    description: After crash.
+
+  advert3:
+    make: @make3
+    price: 6000
+    description: For parts.
+
+  advert4:
+    make: @make4
+    price: 4000
+    description: 4000 dollars OBO.
