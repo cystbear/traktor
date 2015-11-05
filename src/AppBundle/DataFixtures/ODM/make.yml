@@ -1,0 +1,25 @@
+AppBundle\Document\Make:
+  make0:
+    name: "Mercedes-Benz"
+    disabled: false
+  make1:
+    name: "Mitsubishi"
+    disabled: false
+  make2:
+    name: "Volvo"
+    disabled: false
+  make3:
+    name: "John Deere"
+    disabled: false
+  make4:
+    name: "МТЗ"
+    disabled: false
+  make5:
+    name: "Jinma"
+    disabled: false
+  make6:
+    name: "Case"
+    disabled: false
+  make7:
+    name: "Caterpillar"
+    disabled: false

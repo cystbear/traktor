@@ -54,7 +54,7 @@ doctrine_mongodb:
         default:
             server: mongodb://localhost:27017
             options: {}
-    default_database: traktor
+    default_database: "%database_name%"
     document_managers:
         default:
             auto_mapping: true
@@ -70,3 +70,9 @@ swiftmailer:
 
 app:
   greet: "Hello guys!"
+
+hautelook_alice:
+    db_drivers:
+        mongodb: ~
+    locale: en_US
+    seed: 1
